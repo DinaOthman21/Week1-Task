@@ -4,7 +4,7 @@ fun main(){
 
 }
 
-fun iPv4AddressChecker(address:String) : Boolean{
+fun isValidIPv4Address(address:String) : Boolean{
     val segments : List<String> = address.split(".")
     return checkSegmentCount(segments) &&
             checkEachSegment(segments)
