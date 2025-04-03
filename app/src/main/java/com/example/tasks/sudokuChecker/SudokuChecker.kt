@@ -6,7 +6,7 @@ fun main(){
 
 }
 
-fun sudokuChecker(sudokuInput: Array<CharArray>): Boolean {
+fun isSudokuBoardValid(sudokuInput: Array<CharArray>): Boolean {
     return checkInputSize(sudokuInput) &&
             checkCellsValidation(sudokuInput) &&
             checkDuplicatesInRows(sudokuInput) &&
@@ -80,10 +80,10 @@ fun checkDuplicatesInColumns(sudokuInput: Array<CharArray>): Boolean {
 
 
 fun checkDuplicatesInSubGrids(sudokuInput: Array<CharArray>): Boolean {
-    val n = sudokuInput.size
-    val subgridSize = sqrt(n.toDouble()).toInt()
-    for (i in 0 until n step subgridSize) {
-        for (j in 0 until n step subgridSize) {
+    val size = sudokuInput.size
+    val subgridSize = sqrt(size.toDouble()).toInt()
+    for (i in 0 until size step subgridSize) {
+        for (j in 0 until size step subgridSize) {
             val seen = mutableSetOf<Char>()
             for (x in i until i + subgridSize) {
                 for (y in j until j + subgridSize) {
