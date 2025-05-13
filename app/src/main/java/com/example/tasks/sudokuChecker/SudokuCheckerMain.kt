@@ -3,8 +3,8 @@ package com.example.tasks.sudokuChecker
 fun main(){
 
     test(
-        "If given a valid Sudoku, it should return true." , // not complete
-        result = sudokuChecker(
+        name = "If given a valid Sudoku, it should return true." , // not complete
+        result = isSudokuBoardValid(
             sudokuInput= arrayOf(
                 charArrayOf('5','3','-','-','7','-','-','-','-') ,
                 charArrayOf('6','-','-','1','9','5','-','-','-') ,
@@ -21,8 +21,8 @@ fun main(){
     )
 
     test(
-        "If a Sudoku contains duplicate numbers in a row, it should return false." ,
-        result = sudokuChecker(
+        name = "If a Sudoku contains duplicate numbers in a row, it should return false." ,
+        result = isSudokuBoardValid(
             sudokuInput= arrayOf(
                 charArrayOf('5','3','-','-','7','-','-','-','-') ,
                 charArrayOf('6','-','-','1','9','5','-','-','-') ,
@@ -39,8 +39,8 @@ fun main(){
     )
 
     test(
-        "If a Sudoku contains duplicate numbers in a column, it should return false." ,
-        result = sudokuChecker(
+        name = "If a Sudoku contains duplicate numbers in a column, it should return false." ,
+        result = isSudokuBoardValid(
             sudokuInput= arrayOf(
                 charArrayOf('5','3','-','-','7','-','-','-','-') ,
                 charArrayOf('6','-','-','1','9','5','-','-','-') ,
@@ -57,8 +57,8 @@ fun main(){
     )
 
     test(
-        "If given a valid 4×4 Sudoku, it should return true." , //complete
-        result = sudokuChecker(
+        name = "If given a valid 4×4 Sudoku, it should return true." , //complete
+        result = isSudokuBoardValid(
             sudokuInput= arrayOf(
                 charArrayOf('1','2','3','4') ,
                 charArrayOf('3','4','1','2') ,
@@ -70,8 +70,8 @@ fun main(){
     )
 
     test(
-        "If given an empty Sudoku, it should return true." ,
-        result = sudokuChecker(
+        name = "If given an empty Sudoku, it should return true." ,
+        result = isSudokuBoardValid(
             sudokuInput= arrayOf(
                 charArrayOf('-','-','-','-'),
                 charArrayOf('-','-','-','-'),
@@ -83,8 +83,8 @@ fun main(){
     )
 
     test(
-        "If there is a duplicate in a subgrid, it should return false.",
-        result = sudokuChecker(
+        name = "If there is a duplicate in a subgrid, it should return false.",
+        result = isSudokuBoardValid(
             sudokuInput = arrayOf(
                 charArrayOf('5', '3', '9', '-', '7', '-', '-', '-', '-'), // duplicate in Top-Right subgrid (9)
                 charArrayOf('-', '-', '-', '1', '9', '5', '-', '-', '-'),
@@ -95,6 +95,32 @@ fun main(){
                 charArrayOf('-', '6', '-', '-', '-', '-', '2', '8', '-'),
                 charArrayOf('-', '-', '-', '4', '1', '9', '-', '-', '5'),
                 charArrayOf('-', '-', '-', '-', '8', '-', '-', '7', '9')
+            )
+        ),
+        correctResult = false
+    )
+
+    test(
+        name = "If the Sudoku grid has an invalid size, it should return false.",
+        result = isSudokuBoardValid(
+            sudokuInput = arrayOf(
+                charArrayOf('5', '3', '9', '-', '7', '-', '-', '-', '-'),
+                charArrayOf('-', '-', '-', '1', '9', '5', '-', '-', '-'),
+                charArrayOf('-', '9', '8', '-', '-', '-', '-', '6', '-'),
+                charArrayOf('8', '-', '-', '-', '6', '-', '-', '-', '3')
+            )
+        ),
+        correctResult = false
+    )
+
+    test(
+        name = "If a cell contains an out of range value , it should return false.",
+        result = isSudokuBoardValid(
+            sudokuInput = arrayOf(
+                charArrayOf('1','2','3','9') , // 9 is out of range
+                charArrayOf('3','4','1','2') ,
+                charArrayOf('2','1','4','3') ,
+                charArrayOf('4','3','2','1')
             )
         ),
         correctResult = false
